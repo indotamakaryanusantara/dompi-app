@@ -24,15 +24,25 @@ jobs:
       with:
         flutter-version: '3.24.5'
         channel: 'stable'
+        cache: true
     
     - name: Install dependencies
       run: flutter pub get
     
     - name: Build APK
-      run: flutter build apk --release
+      run: flutter build apk --release --split-per-abi
+    
+    - name: Build App Bundle
+      run: flutter build appbundle --release
     
     - name: Upload APK
       uses: actions/upload-artifact@v3
       with:
         name: dompi-apk
-        path: build/app/outputs/flutter-apk/app-release.apk
+        path: build/app/outputs/flutter-apk/
+    
+    - name: Upload App Bundle
+      uses: actions/upload-artifact@v3
+      with:
+        name: dompi-aab
+        path: build/app/outputs/bundle/release/
