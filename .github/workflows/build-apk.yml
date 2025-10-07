@@ -25,6 +25,22 @@ jobs:
         flutter-version: '3.24.5'
         channel: 'stable'
         cache: true
+
+    - name: Prepare signing (keystore from secrets)
+      shell: bash
+      run: |
+        if [ -n "${{ secrets.KEYSTORE_BASE64 }}" ]; then
+          echo "Preparing keystore from secrets"
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > android/dompi-upload.jks
+          cat > android/key.properties << 'EOF'
+          storePassword=${{ secrets.KEYSTORE_PASSWORD }}
+          keyPassword=${{ secrets.KEY_PASSWORD }}
+          keyAlias=${{ secrets.KEY_ALIAS }}
+          storeFile=../dompi-upload.jks
+          EOF
+        else
+          echo "No signing secrets found, build will use debug signing." 
+        fi
     
     - name: Install dependencies
       run: flutter pub get
