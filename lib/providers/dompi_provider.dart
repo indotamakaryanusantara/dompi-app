@@ -1,14 +1,17 @@
 import 'package:flutter/foundation.dart';
 import '../models/transaction_model.dart';
-import '../db/database_helper.dart';
-import '../db/web_database_helper.dart';
+import '../db/database_helper.dart' if (dart.library.html) '../db/web_database_helper.dart' if (dart.library.io) '../db/database_helper.dart';
 
 class DompiProvider with ChangeNotifier {
   List<DompiTransaction> _transactions = [];
   late final dynamic _dbHelper;
   
   DompiProvider() {
-    _dbHelper = kIsWeb ? WebDatabaseHelper() : DatabaseHelper();
+    if (kIsWeb) {
+      _dbHelper = WebDatabaseHelper();
+    } else {
+      _dbHelper = DatabaseHelper();
+    }
   }
 
   List<DompiTransaction> get transactions => _transactions;
