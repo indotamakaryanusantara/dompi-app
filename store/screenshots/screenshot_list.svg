@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1920" fill="#FFFFFF"/>
+  <rect x="0" y="0" width="1080" height="140" fill="#4CAF50"/>
+  <text x="540" y="88" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="48" fill="#FFFFFF">Dompi</text>
+
+  <g transform="translate(80,200)" font-family="Arial, Helvetica, sans-serif">
+    <rect x="0" y="0" width="920" height="120" rx="18" fill="#F9FBE7"/>
+    <text x="36" y="52" font-size="32" font-weight="700" fill="#212121">Gaji Bulanan</text>
+    <text x="36" y="92" font-size="26" fill="#616161">07 Okt 2025</text>
+    <text x="860" y="72" text-anchor="end" font-size="32" font-weight="800" fill="#2E7D32">+ Rp 5.000.000</text>
+
+    <rect x="0" y="150" width="920" height="120" rx="18" fill="#FFF3E0"/>
+    <text x="36" y="202" font-size="32" font-weight="700" fill="#212121">Belanja Harian</text>
+    <text x="36" y="242" font-size="26" fill="#616161">07 Okt 2025</text>
+    <text x="860" y="222" text-anchor="end" font-size="32" font-weight="800" fill="#C62828">- Rp 120.000</text>
+
+    <rect x="0" y="300" width="920" height="120" rx="18" fill="#F9FBE7"/>
+    <text x="36" y="352" font-size="32" font-weight="700" fill="#212121">Projek</text>
+    <text x="36" y="392" font-size="26" fill="#616161">06 Okt 2025</text>
+    <text x="860" y="372" text-anchor="end" font-size="32" font-weight="800" fill="#2E7D32">+ Rp 1.250.000</text>
+  </g>
+
+  <rect x="0" y="1800" width="1080" height="120" fill="#FAFAFA"/>
+  <text x="540" y="1870" text-anchor="middle" font-family="Arial" font-size="24" fill="#757575">Tangkapan layar daftar transaksi</text>
+</svg>
+
+

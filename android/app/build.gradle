@@ -40,25 +40,30 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
     }
 
-    def hasSigning = false
     signingConfigs {
         release {
             def props = new Properties()
             def propsFile = rootProject.file('android/key.properties')
-            if (propsFile.exists()) {
-                propsFile.withInputStream { props.load(it) }
-                def storePath = props.getProperty('storeFile')
-                if (storePath != null) {
-                    // Resolve relative to android/ dir
-                    def resolved = rootProject.file("android/${storePath}")
-                    storeFile resolved
-                }
-                storePassword props.getProperty('storePassword')
-                keyAlias props.getProperty('keyAlias')
-                keyPassword props.getProperty('keyPassword')
-                if (storeFile != null && storePassword && keyAlias && keyPassword) {
-                    hasSigning = true
-                }
+            if (!propsFile.exists()) {
+                throw new GradleException('Release signing required: android/key.properties not found. Fill GitHub Secrets or provide the file locally.')
+            }
+            propsFile.withInputStream { props.load(it) }
+
+            def storePath = props.getProperty('storeFile')
+            if (storePath == null || storePath.trim().isEmpty()) {
+                throw new GradleException('Release signing required: storeFile missing in android/key.properties')
+            }
+            def resolved = rootProject.file("android/${storePath}")
+            if (!resolved.exists()) {
+                throw new GradleException("Keystore not found at: ${resolved}")
+            }
+            storeFile resolved
+            storePassword props.getProperty('storePassword')
+            keyAlias props.getProperty('keyAlias')
+            keyPassword props.getProperty('keyPassword')
+
+            if (!storePassword || !keyAlias || !keyPassword) {
+                throw new GradleException('Release signing required: keyAlias/storePassword/keyPassword missing in android/key.properties')
             }
         }
     }
@@ -73,7 +78,7 @@ android {
 
     buildTypes {
         release {
-            signingConfig hasSigning ? signingConfigs.release : signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled false
             shrinkResources false
         }

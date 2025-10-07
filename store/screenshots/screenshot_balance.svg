@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8F5E9"/>
+      <stop offset="100%" stop-color="#FFFFFF"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1920" fill="#FFFFFF"/>
+  <rect x="0" y="0" width="1080" height="420" fill="url(#g)"/>
+  <text x="540" y="120" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="56" fill="#1B5E20">Dompi</text>
+  <text x="540" y="210" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="34" fill="#4E6E50">Saldo</text>
+  <text x="540" y="290" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="72" fill="#1B5E20">Rp 0</text>
+
+  <g transform="translate(90,480)">
+    <rect x="0" y="0" width="900" height="260" rx="20" fill="#F1F8E9"/>
+    <g transform="translate(48,40)">
+      <rect x="0" y="0" width="380" height="80" rx="16" fill="#4CAF50"/>
+      <text x="190" y="52" text-anchor="middle" font-family="Arial" font-size="34" font-weight="700" fill="#FFFFFF">+ Masuk / Terima</text>
+      <rect x="420" y="0" width="380" height="80" rx="16" fill="#E53935"/>
+      <text x="610" y="52" text-anchor="middle" font-family="Arial" font-size="34" font-weight="700" fill="#FFFFFF">- Beli / Bayar</text>
+      <text x="190" y="170" text-anchor="middle" font-family="Arial" font-size="28" fill="#2E7D32">Tambah pemasukan</text>
+      <text x="610" y="170" text-anchor="middle" font-family="Arial" font-size="28" fill="#C62828">Tambah pengeluaran</text>
+    </g>
+  </g>
+
+  <text x="540" y="1020" text-anchor="middle" font-family="Arial" font-size="30" fill="#9E9E9E">Belum ada transaksi</text>
+
+  <rect x="0" y="1800" width="1080" height="120" fill="#FAFAFA"/>
+  <text x="540" y="1870" text-anchor="middle" font-family="Arial" font-size="24" fill="#757575">Tangkapan layar saldo</text>
+</svg>
+
+

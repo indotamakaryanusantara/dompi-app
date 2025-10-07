@@ -22,6 +22,11 @@ jobs:
         run: |
           rsvg-convert -w 1024 -h 500 store/feature_graphic_1024x500.svg -o store/feature_graphic_1024x500.png
 
+      - name: Export screenshots 1080x1920 PNG
+        run: |
+          rsvg-convert -w 1080 -h 1920 store/screenshots/screenshot_balance.svg -o store/screenshots/screenshot_balance.png
+          rsvg-convert -w 1080 -h 1920 store/screenshots/screenshot_list.svg -o store/screenshots/screenshot_list.png
+
       - name: Upload assets
         uses: actions/upload-artifact@v4
         with:
@@ -29,5 +34,7 @@ jobs:
           path: |
             store/icon_512.png
             store/feature_graphic_1024x500.png
+            store/screenshots/screenshot_balance.png
+            store/screenshots/screenshot_list.png
 
 
