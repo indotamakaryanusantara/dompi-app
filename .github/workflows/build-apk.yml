@@ -36,7 +36,7 @@ jobs:
             echo "storePassword=${{ secrets.KEYSTORE_PASSWORD }}";
             echo "keyPassword=${{ secrets.KEY_PASSWORD }}";
             echo "keyAlias=${{ secrets.KEY_ALIAS }}";
-            echo "storeFile=../dompi-upload.jks";
+            echo "storeFile=dompi-upload.jks";
           } > android/key.properties
         else
           echo "No signing secrets found, build will use debug signing."

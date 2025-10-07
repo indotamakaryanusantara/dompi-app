@@ -46,7 +46,12 @@ android {
             def propsFile = rootProject.file('android/key.properties')
             if (propsFile.exists()) {
                 propsFile.withInputStream { props.load(it) }
-                storeFile file(props.getProperty('storeFile'))
+                def storePath = props.getProperty('storeFile')
+                if (storePath != null) {
+                    // Resolve relative to android/ dir
+                    def resolved = rootProject.file("android/${storePath}")
+                    storeFile resolved
+                }
                 storePassword props.getProperty('storePassword')
                 keyAlias props.getProperty('keyAlias')
                 keyPassword props.getProperty('keyPassword')
