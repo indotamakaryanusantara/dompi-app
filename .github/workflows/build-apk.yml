@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
     - uses: actions/checkout@v4
@@ -62,3 +64,22 @@ jobs:
       with:
         name: dompi-aab
         path: build/app/outputs/bundle/release/
+
+    - name: Get app version from pubspec
+      id: version
+      shell: bash
+      run: |
+        ver=$(grep '^version:' pubspec.yaml | awk '{print $2}')
+        echo "tag=v${ver}" >> $GITHUB_OUTPUT
+
+    - name: Create GitHub Release and upload assets
+      uses: softprops/action-gh-release@v1
+      if: ${{ success() }}
+      with:
+        tag_name: ${{ steps.version.outputs.tag }}
+        name: Dompi ${{ steps.version.outputs.tag }}
+        draft: false
+        prerelease: false
+        files: |
+          build/app/outputs/flutter-apk/*.apk
+          build/app/outputs/bundle/release/*.aab
