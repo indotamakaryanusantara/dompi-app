@@ -43,7 +43,7 @@ android {
     signingConfigs {
         release {
             def props = new Properties()
-            def propsFile = rootProject.file('android/key.properties')
+            def propsFile = rootProject.file('key.properties')
             println "Looking for key.properties at: ${propsFile.absolutePath}"
             println "File exists: ${propsFile.exists()}"
             if (!propsFile.exists()) {
@@ -55,7 +55,7 @@ android {
             if (storePath == null || storePath.trim().isEmpty()) {
                 throw new GradleException('Release signing required: storeFile missing in android/key.properties')
             }
-            def resolved = rootProject.file("android/${storePath}")
+            def resolved = rootProject.file("${storePath}")
             if (!resolved.exists()) {
                 throw new GradleException("Keystore not found at: ${resolved}")
             }
