@@ -44,6 +44,8 @@ android {
         release {
             def props = new Properties()
             def propsFile = rootProject.file('android/key.properties')
+            println "Looking for key.properties at: ${propsFile.absolutePath}"
+            println "File exists: ${propsFile.exists()}"
             if (!propsFile.exists()) {
                 throw new GradleException('Release signing required: android/key.properties not found. Fill GitHub Secrets or provide the file locally.')
             }
