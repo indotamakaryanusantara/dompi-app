@@ -31,7 +31,9 @@ jobs:
     - name: Prepare signing (keystore from secrets)
       shell: bash
       run: |
+        echo "Checking secrets availability..."
         if [ -n "${{ secrets.KEYSTORE_BASE64 }}" ]; then
+          echo "✅ KEYSTORE_BASE64 found"
           echo "Preparing keystore from secrets"
           echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > android/dompi-upload.jks
           {
@@ -40,8 +42,14 @@ jobs:
             echo "keyAlias=${{ secrets.KEY_ALIAS }}";
             echo "storeFile=dompi-upload.jks";
           } > android/key.properties
+          echo "✅ Keystore and key.properties created"
+          ls -la android/
         else
-          echo "No signing secrets found, build will use debug signing."
+          echo "❌ KEYSTORE_BASE64 not found - build will fail"
+          echo "Available secrets:"
+          echo "KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD != '' && 'SET' || 'NOT SET' }}"
+          echo "KEY_PASSWORD: ${{ secrets.KEY_PASSWORD != '' && 'SET' || 'NOT SET' }}"
+          echo "KEY_ALIAS: ${{ secrets.KEY_ALIAS != '' && 'SET' || 'NOT SET' }}"
         fi
     
     - name: Install dependencies
